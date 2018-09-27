@@ -52,6 +52,15 @@ http {
     proxy_set_header {{ header }} {{ value }};
 {% endif %}
 {% endfor %}
+    
+    # cache for discovery metadata documents
+    lua_shared_dict discovery 1m;
+    lua_shared_dict jwks 1m;
+    server {
+        resolver 8.8.8.8; # Works both at home and in the office
+        # Required so that OpenID doesn't fail randomly
+        set $session_secret U2GoXJPsG4jYx2G3Bn0k99Fle0+yNSqt7D92po40RvU=;
+    }
 
     include 'nginx-kong.conf';
 }

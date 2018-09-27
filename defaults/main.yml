@@ -25,6 +25,11 @@ kong_rpm_pkg_url_pre_0_11_x: "https://github.com/Mashape/kong/releases/download/
 ##  Config
 ##
 ##------------------
+## General Config
+##------------------
+kong_custom_plugins:           oidc
+
+##------------------
 ## NGINX Config
 ##------------------
 kong_prefix_dir:               /usr/local/kong
